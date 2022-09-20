@@ -1,13 +1,123 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>App</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="utf-8" />
+  <title>StoreKing - Bazaar</title>
+
+  <base href="/" />
+
+  <meta name="description" content="One stop Assisted Digital Touch point - Storeking Digital Hub
+  description - Storeking Digital Hub - an unique idea of Assisted Digital Touch point for Bharath as One stop solution for all Financial needs for customers.
+  keywords - Digital Hub, hub.storeking.in, Storeking Digital Hub, Storeking,Financial products, Assisted Digital Touch point, finance, financial services, lending services, payment , remittance, Banking correspondence, Insurance, E-Government & agri services, Gold Investment, AEPS, Loan, Customer finnace,
+  technology, ecommerce , g2c services, essential services" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.png" />
+
+  <link rel="icon" type="image/x-icon" href="./assets/images/logo_v5.svg" />
+  <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'
+    type='text/css'>
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <!-- CSS FILES LINK -->
+  <link rel="stylesheet" href="assets/css/animate.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=skglInit"></script>
+
+  <div id="sk-google-lang-modal" style="display: none;">
+    <div class="skgl-main">
+      <div class="skgl-inner">
+        <div class="skgl-ok text-right">
+          <a href="javascript:;" class="font-size-11 notranslate" onclick="skglClose()">
+            <img src="./assets/images/closeblack.svg" alt="">
+          </a>
+        </div>
+
+        <h3 class="notranslate">Choose Language</h3>
+        <div class="lng-blk"></div>
+        <div id="gtranslate"></div>
+      </div>
+    </div>
+  </div>
+
   <app-root></app-root>
+
+  <!-- JS FILE LINKS -->
+  <script src="assets/js/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+
+  <script>
+    addLang();
+
+    function skglInit() {
+      var o = new google['translate'].TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'kn,en,ml,mr,ta,te,hi'
+      }, 'gtranslate');
+    }
+
+    function addLang() {
+      var l = ['English', 'Hindi', 'Kannada', 'Malayalam', 'Marathi', 'Tamil', 'Telgu'];
+      var k = ['en', 'hi', 'kn', 'ml', 'mr', 'ta', 'te'];
+      var tr = ['English', 'हिंदी', 'ಕನ್ನಡ', 'മലയാളം', 'मराठी', 'தமிழ்', 'తెలుగు'];
+      var t = '';
+      for (var i = 0; i < l.length; i++) {
+        t += '<div class="lng-blk-inner ' + k[i] + ' lng-' + i + ' notranslate" onclick="langClick(\'' + k[i] + '\', ' + i + ')"><span class="mtxt">' + tr[i] + '</span><br/> <span class="stxt">' + l[i] + '</span> </div>';
+      }
+      document.querySelector('.lng-blk').innerHTML = t;
+    }
+
+    function skglClose() {
+      localStorage.setItem('_lng', 1);
+      document.getElementById('sk-google-lang-modal').style.display = "none";
+    }
+
+    function langClick(v, index) {
+      try {
+        var lsEl = document.querySelector('.goog-te-combo');
+        for (var i = 0; i < 6; i++) {
+          var sEl = document.querySelector('.lng-' + i);
+          var c = sEl.getAttribute('class');
+          c = c.replace('active', '');
+          if (index == i) {
+            sEl.setAttribute('class', c + ' active');
+          } else {
+            sEl.setAttribute('class', c);
+          }
+        }
+        lsEl.value = v;
+        if ("createEvent" in document) {
+          var evt = document.createEvent("HTMLEvents");
+          evt.initEvent("change", false, true);
+          lsEl.dispatchEvent(evt);
+        }
+        else {
+          lsEl.fireEvent("onchange");
+        }
+        skglClose();
+        if (v == 'en') { location.reload(); }
+      } catch (e) {
+
+      }
+    }
+  </script>
 </body>
+
+
 </html>
